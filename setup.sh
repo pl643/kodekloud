@@ -8,4 +8,4 @@ curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/bashrc.kk > ~/bas
 grep bashrc.kk ~/.bashrc || echo "source ~/bashrc.kk" >> ~/.bashrc
 
 # install and execute tmux
-echo mjolnir123 | sudo -S yum install tmux sshpass
+echo mjolnir123 | sudo -S yum -y install tmux sshpass
