@@ -7,5 +7,16 @@ curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/bashrc.kk > ~/bas
 # append sourcing of bashrc.kk to ~/.bashrc
 grep bashrc.kk ~/.bashrc || echo "source ~/bashrc.kk" >> ~/.bashrc
 
-# install and execute tmux
-echo mjolnir123 | sudo -S yum -y install tmux sshpass
+# add thor to sudoer files
+echo mjolnir123 | sudo -S sh -c 'echo "thor ALL = NOPASSWD : ALL" >> /etc/sudoers'
+
+# install tmux, sshpass
+yum -y install tmux sshpass neovim
+
+# create sshkey
+[ ! -f ~/.ssh/id_rsa ] && ssh-keygen -q -N "" -f ~/.ssh/id_rsa
+
+# copy sshkey to systems for passwordless login
+sshpass -p Ir0nM@n ssh-copy-id tony@stapp01
+sshpass -p Am3ric@ ssh-copy-id steve@stapp02
+
