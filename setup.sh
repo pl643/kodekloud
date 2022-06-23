@@ -1,4 +1,6 @@
 # Setup KodeKloud Lab environment for tmux environment and sshpass to auto enter password
+# paste below command without the # to execute: 
+#    curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh | bash
 
 curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/bashrc.kk > ~/bashrc.kk
 
