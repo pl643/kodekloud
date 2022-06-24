@@ -16,6 +16,9 @@ sudo yum -y install tmux sshpass neovim
 # create sshkey
 [ ! -f ~/.ssh/id_rsa ] && ssh-keygen -q -N "" -f ~/.ssh/id_rsa
 
+# skip hostkey and userhostfile checking
+alias ssh='ssh -o userknownhostsfile=/dev/null -o "StrictHostKeyChecking no"
+
 # copy sshkey to systems for passwordless login
 sshpass -p Ir0nM@n ssh tony@stapp01 '[ -d .ssh ] || mkdir .ssh ]'
 sshpass -p Ir0nM@n ssh-copy-id tony@stapp01
