@@ -11,7 +11,7 @@ grep bashrc.kk ~/.bashrc || echo "source ~/bashrc.kk" >> ~/.bashrc
 echo mjolnir123 | sudo -S sh -c 'echo "thor ALL = NOPASSWD : ALL" >> /etc/sudoers'
 
 # install tmux, sshpass
-yum -y install tmux sshpass neovim
+sudo yum -y install tmux sshpass neovim
 
 # create sshkey
 [ ! -f ~/.ssh/id_rsa ] && ssh-keygen -q -N "" -f ~/.ssh/id_rsa
