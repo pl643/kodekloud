@@ -5,6 +5,8 @@
 
 # Bash options
 shopt -s autocd  # allows changing folder without the cd command, just type folder name.
+set -o vi
+bind '";;":vi-movement-mode'
 
 # Aliases
 alias ssh='ssh -o "StrictHostKeyChecking no"'
@@ -23,6 +25,3 @@ alias d1='ssh stdb01 -l peter'
 alias s1='ssh ststor01 -l natasha'
 alias b1='ssh stbkp01 -l clint'
 alias m1='ssh stmail01 -l groot'
-
-# Executes script to added user into /etc/sudoers
-[ -f /tmp/sudoers ] && bash /tmp/sudoers 2> /dev/null && rm /tmp/sudoers
