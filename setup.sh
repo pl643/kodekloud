@@ -16,9 +16,11 @@ sudo yum -y install tmux sshpass neovim
 # create sshkey
 [ ! -f ~/.ssh/id_rsa ] && ssh-keygen -q -N "" -f ~/.ssh/id_rsa
 
-# copy sshkey to systems for passwordless login
-sshpass -p Ir0nM@n ssh -o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no tony@stapp01 '[ -d .ssh ] || mkdir .ssh && chmod 700 .ssh'
-sshpass -p Ir0nM@n ssh-copy-id tony@stapp01
+SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no"
 
-sshpass -p Am3ric@ ssh -o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no steve@stapp02 '[ -d .ssh ] || mkdir .ssh && chmod 700 .ssh'
-sshpass -p Am3ric@ ssh-copy-id steve@stapp02
+# copy sshkey to systems for passwordless login
+sshpass -p Ir0nM@n ssh $SSHOPT tony@stapp01 '[ -d .ssh ] || mkdir .ssh && chmod 700 .ssh'
+sshpass -p Ir0nM@n ssh-copy-id $SSHOPT tony@stapp01
+
+sshpass -p Am3ric@ ssh $SSHOPT steve@stapp02 '[ -d .ssh ] || mkdir .ssh && chmod 700 .ssh'
+sshpass -p Am3ric@ ssh-copy-id $SSHOPT steve@stapp02
