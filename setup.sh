@@ -36,7 +36,9 @@ if [ "$hostname" = "jump_host" ]; then
         # copy sshkey to app systems for passwordless login
         if sudo ping -c 1 -W 1 $hostname; then
           sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
-          sshpass -p $password ssh $SSHOPT $user@$hostname 'curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh \> setup.sh; bash -x setup.sh'
+          sshpass -p $password ssh $SSHOPT $user@$hostname "echo $password | sudo -S yum -y install openssh-clients"
+          sshpass -p $password scp $SSHOPT bashrc.kk  $user@$hostname:
+          #sshpass -p $password ssh $SSHOPT $user@$hostname 'curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh \> setup.sh; bash -x setup.sh'
         fi
     done
 fi
