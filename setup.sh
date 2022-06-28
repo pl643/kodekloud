@@ -1,6 +1,6 @@
 # Setup KodeKloud Lab environment for tmux and ssh keys for less passord typing.
 # Paste below line without the # to execute:
-#    curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh > setup.sh; bash -x setup.sh; tmux
+#    curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh > setup.sh; bash -x setup.sh; source bashrc.kk; tmux
 
 # retreive ~/bashrc.kk
 [ -f ~/bashrc.kk ] || curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/bashrc.kk > ~/bashrc.kk
@@ -36,6 +36,7 @@ if [ "$hostname" = "jump_host" ]; then
         # copy sshkey to app systems for passwordless login
         if sudo ping -c 1 -W 1 $hostname; then
           sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
+          sshpass -p $password ssh $SSHOPT $user@$hostname 'curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh \> setup.sh; bash -x setup.sh'
         fi
     done
 fi
