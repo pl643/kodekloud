@@ -37,7 +37,7 @@ if [ "$hostname" = "thor" ]; then
         password=$(echo $line |  awk {'print $5'})
 
         # copy sshkey to systems for passwordless login
-        sshpass -p $password ssh $SSHOPT $user@$hostname '[ -d .ssh ] || mkdir .ssh && chmod 700 .ssh'
+        # sshpass -p $password ssh $SSHOPT $user@$hostname '[ -d .ssh ] || mkdir .ssh && chmod 700 .ssh'
         sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
     done
 fi
