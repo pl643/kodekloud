@@ -16,11 +16,10 @@ hostname=$(hostname | cut -f 1 -d.)
 user=$(grep $hostname $passwordfile | awk {'print $4'})
 password=$(grep $hostname $passwordfile | awk {'print $5'})
 # echo mjolnir123 | sudo -S sh -c 'echo "thor ALL = NOPASSWD : ALL" >> /etc/sudoers2'
-# echo $password | sudo -S sh   -c echo "$user ALL = NOPASSWD : ALL >> /etc/sudoers2"
 echo $password | sudo -S bash -c "echo $user ALL = NOPASSWD : ALL >> /etc/sudoers"
 
 # create default sshkey if doesn't exist
-[ ! -f ~/.ssh/id_rsa ] && ssh-keygen -q -N "" -f ~/.ssh/id_rsa
+[ -f ~/.ssh/id_rsa ] || ssh-keygen -q -N "" -f ~/.ssh/id_rsa
 
 # ssh options to prevent prompting
 SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no"
@@ -30,7 +29,7 @@ if [ "$hostname" = "jump_host" ]; then
     # install tmux, sshpass
     sudo yum -y install tmux sshpass neovim > /dev/null 2>&
     passwordfile="passwords"
-    grep -v jump_host $passwordfile | while read line; do
+    grep app $passwordfile | while read line; do
         hostname=$(echo $line | awk {'print $1'})
         user=$(echo $line |  awk {'print $4'})
         password=$(echo $line |  awk {'print $5'})
