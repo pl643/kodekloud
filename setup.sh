@@ -1,6 +1,6 @@
 # Setup KodeKloud Lab environment for tmux and ssh keys for less passord typing.
 # Paste below line without the # to execute:
-#    curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh > setup.sh; bash -x setup.sh; source bashrc.kk; tmux
+#    curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh; bash -x setup.sh; source bashrc.kk; tmux
 
 # retreive ~/bashrc.kk
 [ -f ~/bashrc.kk ] || curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/bashrc.kk > ~/bashrc.kk
