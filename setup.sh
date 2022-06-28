@@ -26,10 +26,9 @@ echo $password | sudo -S bash -c "echo $user ALL = NOPASSWD : ALL >> /etc/sudoer
 SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no"
 
 # jump(thor) system specific specific
-if [ "$hostname" = "thor" ]; then
+if [ "$hostname" = "jump_host" ]; then
     # install tmux, sshpass
-    sudo yum -y install tmux sshpass neovim
-
+    sudo yum -y install tmux sshpass neovim > /dev/null 2>&
     passwordfile="passwords"
     grep -v jump_host $passwordfile | while read line; do
         hostname=$(echo $line | awk {'print $1'})
@@ -37,7 +36,9 @@ if [ "$hostname" = "thor" ]; then
         password=$(echo $line |  awk {'print $5'})
 
         # copy sshkey to systems for passwordless login
-        # sshpass -p $password ssh $SSHOPT $user@$hostname '[ -d .ssh ] || mkdir .ssh && chmod 700 .ssh'
-        sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
+        # sshpass -p $password ssh $SSHOPT $user@$hostname '[ -d .ssh ] || mkdir .ssh && chmod 700 .ssh' 
+        if sudo ping -C 1 -W 1 $hostname; then
+          sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
+        fi
     done
 fi
