@@ -25,8 +25,8 @@ SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no"
 
 # jump(thor) system specific specific
 if [ "$hostname" = "jump_host" ]; then
-    # install tmux, sshpass
-    sudo yum -y install tmux sshpass neovim > /dev/null 2>&
+    # install tmux, sshpass, neovim
+    [ -f yum.install.log ] || sudo yum -y install tmux sshpass neovim 2>&1 > yum.install.log
     passwordfile="passwords"
     grep app $passwordfile | while read line; do
         hostname=$(echo $line | awk {'print $1'})
