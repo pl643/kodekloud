@@ -1,6 +1,5 @@
-# Setup KodeKloud Lab environment for tmux environment ssh keys for less passord typing.
- and sshpass to auto enter password
-# paste below command without the # to execute:
+# Setup KodeKloud Lab environment for tmux and ssh keys for less passord typing.
+# Paste below line without the # to execute:
 #    curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh > setup.sh; bash -x setup.sh; tmux
 
 # retreive ~/bashrc.kk
@@ -34,9 +33,8 @@ if [ "$hostname" = "jump_host" ]; then
         user=$(echo $line |  awk {'print $4'})
         password=$(echo $line |  awk {'print $5'})
 
-        # copy sshkey to systems for passwordless login
-        # sshpass -p $password ssh $SSHOPT $user@$hostname '[ -d .ssh ] || mkdir .ssh && chmod 700 .ssh' 
-        if sudo ping -C 1 -W 1 $hostname; then
+        # copy sshkey to app systems for passwordless login
+        if sudo ping -c 1 -W 1 $hostname; then
           sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
         fi
     done
