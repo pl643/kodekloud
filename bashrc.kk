@@ -9,10 +9,10 @@ set -o vi
 bind '";;":vi-movement-mode'
 
 SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no"
+EDITOR='nvim'
 passwordfile="passwords"
 
 function setup_or_ssh() {
-        set -x
         hostname=stapp0$1
         user=$(grep $hostname $passwordfile | awk {'print $4'})
         password=$(grep $hostname $passwordfile | awk {'print $5'})
@@ -21,11 +21,12 @@ function setup_or_ssh() {
 }
 
 # Aliases
-alias ssh='ssh -o "StrictHostKeyChecking no"'
+alias ssh="ssh $SHOPT"
 alias sd='sudo'
 alias s='ls -F'    # short ls
 alias h='cd ~'
 alias b='cd -'
+alias e="$EDITOR"
 alias sa='ls -AF'
 alias l='ls -lF'   # long ls
 alias la='ls -lAF'
