@@ -1,6 +1,6 @@
 # Setup KodeKloud Lab environment for tmux and ssh keys for less passord typing.
 # Paste below line without the # to execute:
-#    curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh; bash -x setup.sh; source bashrc.kk; tmux
+#    curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh && bash -x setup.sh && tmux -f ~/tmux.conf
 
 # retreive ~/bashrc.kk
 [ -f ~/bashrc.kk ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/bashrc.kk
@@ -26,7 +26,7 @@ SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no"
 # jump(thor) system specific specific
 if [ "$hostname" = "jump_host" ]; then
     # install tmux, sshpass, neovim
-    [ -f yum.install.log ] || sudo yum -y install tmux sshpass neovim 2>&1 > yum.install.log
+    [ -f yum.install.log ] || sudo yum -y install tmux sshpass 2>&1 > yum.install.log
     passwordfile="passwords"
     grep app $passwordfile | while read line; do
         hostname=$(echo $line | awk {'print $1'})
@@ -35,8 +35,5 @@ if [ "$hostname" = "jump_host" ]; then
 
         # copy sshkey to app systems for passwordless login
         sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
-        #sshpass -p $password ssh $SSHOPT $user@$hostname "echo $password | sudo -S yum -y install openssh-clients"
-        #sshpass -p $password scp $SSHOPT bashrc.kk  $user@$hostname:
-        #sshpass -p $password ssh $SSHOPT $user@$hostname 'curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh \> setup.sh; bash -x setup.sh'
     done
 fi
