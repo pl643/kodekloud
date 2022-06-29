@@ -16,7 +16,7 @@ function setup_or_ssh() {
         hostname=stapp0$1
         user=$(grep $hostname $passwordfile | awk {'print $4'})
         password=$(grep $hostname $passwordfile | awk {'print $5'})
-        [ -f ~/.1 ] || ssh $SSHOPT $hostname -l $user "[ -f setup.sh ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh && bash -x setup.sh"; touch .$1
+        [ -f ~/.$1 ] || ssh $SSHOPT $hostname -l $user "[ -f setup.sh ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh && bash -x setup.sh"; touch .$1
         ssh $SSHOPT $hostname -l $user
 }
 
