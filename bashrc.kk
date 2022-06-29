@@ -8,6 +8,18 @@ shopt -s autocd  # allows changing folder without the cd command, just type fold
 set -o vi
 bind '";;":vi-movement-mode'
 
+SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no"
+passwordfile="passwords"
+
+function setup_or_ssh() {
+        set -x
+        hostname=stapp0$1
+        user=$(grep $hostname $passwordfile | awk {'print $4'})
+        password=$(grep $hostname $passwordfile | awk {'print $5'})
+        [ -f ~/.1 ] || ssh $SSHOPT $hostname -l $user "[ -f setup.sh ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh && bash -x setup.sh"; touch .$1
+        ssh $SSHOPT $hostname -l $user
+}
+
 # Aliases
 alias ssh='ssh -o "StrictHostKeyChecking no"'
 alias sd='sudo'
@@ -25,3 +37,6 @@ alias d1='ssh stdb01 -l peter'
 alias s1='ssh ststor01 -l natasha'
 alias b1='ssh stbkp01 -l clint'
 alias m1='ssh stmail01 -l groot'
+alias 1='setup_or_ssh 1'
+alias 2='setup_or_ssh 2'
+alias 3='setup_or_ssh 3'
