@@ -7,6 +7,8 @@
 shopt -s autocd  # allows changing folder without the cd command, just type folder name.
 set -o vi
 bind '";;":vi-movement-mode'
+bind -m vi-command 'Control-l: clear-screen'
+bind -m vi-insert 'Control-l: clear-screen'
 
 SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no"
 EDITOR='nvim'
