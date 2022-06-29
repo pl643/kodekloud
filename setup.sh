@@ -3,14 +3,14 @@
 #    curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh; bash -x setup.sh; source bashrc.kk; tmux
 
 # retreive ~/bashrc.kk
-[ -f ~/bashrc.kk ] || curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/bashrc.kk > ~/bashrc.kk
+[ -f ~/bashrc.kk ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/bashrc.kk
 
 # append sourcing of bashrc.kk to ~/.bashrc
 grep bashrc.kk ~/.bashrc || echo "source ~/bashrc.kk" >> ~/.bashrc
 
 # add user to sudoer files
 passwordfile="passwords"
-[ -f $passwordfile ] || curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/passwords > $passwordfile
+[ -f $passwordfile ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/passwords
 hostname=$(hostname | cut -f 1 -d.)
 user=$(grep $hostname $passwordfile | awk {'print $4'})
 password=$(grep $hostname $passwordfile | awk {'print $5'})
@@ -34,11 +34,9 @@ if [ "$hostname" = "jump_host" ]; then
         password=$(echo $line |  awk {'print $5'})
 
         # copy sshkey to app systems for passwordless login
-        if sudo ping -c 1 -W 1 $hostname; then
-          sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
-          sshpass -p $password ssh $SSHOPT $user@$hostname "echo $password | sudo -S yum -y install openssh-clients"
-          sshpass -p $password scp $SSHOPT bashrc.kk  $user@$hostname:
-          #sshpass -p $password ssh $SSHOPT $user@$hostname 'curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh \> setup.sh; bash -x setup.sh'
-        fi
+        sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
+        #sshpass -p $password ssh $SSHOPT $user@$hostname "echo $password | sudo -S yum -y install openssh-clients"
+        #sshpass -p $password scp $SSHOPT bashrc.kk  $user@$hostname:
+        #sshpass -p $password ssh $SSHOPT $user@$hostname 'curl -s https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh \> setup.sh; bash -x setup.sh'
     done
 fi
