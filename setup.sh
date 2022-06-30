@@ -10,7 +10,7 @@ GHURL="https://raw.githubusercontent.com/pl643/kodekloud/main"
 # add loading of bashrc.kk to ~/.bashrc
 grep bashrc.kk ~/.bashrc || echo "source ~/bashrc.kk" >> ~/.bashrc
 
-# grab tmux.conf
+# grab tmux.conf NOTE: tmux prefix is set to `,  2x` will produce one `
 [ -f ~/tmux.conf ] || curl -Os $GHURL/tmux.conf
 
 # grab neovim init file
