@@ -2,15 +2,23 @@
 # Paste below line without the # to execute:
 #    curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh && bash -x setup.sh && tmux -f ~/tmux.conf
 
-# retreive ~/bashrc.kk
-[ -f ~/bashrc.kk ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/bashrc.kk
+GHURL="https://raw.githubusercontent.com/pl643/kodekloud/main"
 
-# append sourcing of bashrc.kk to ~/.bashrc
+# retreive ~/bashrc.kk
+[ -f ~/bashrc.kk ] || curl -Os $GHURL/bashrc.kk
+
+# add loading of bashrc.kk to ~/.bashrc
 grep bashrc.kk ~/.bashrc || echo "source ~/bashrc.kk" >> ~/.bashrc
+
+# grab tmux.conf
+[ -f ~/tmux.conf ] || curl -Os $GHURL/tmux.conf
+
+# grab neovim init file
+[ -f ~/init.vim ] || curl -Os $GHURL/init.vim
 
 # add user to /etc/sudoers files to not prompt for password
 passwordfile="passwords"
-[ -f $passwordfile ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/passwords
+[ -f $passwordfile ] || curl -Os $GHURL/passwords
 hostname=$(hostname | cut -f 1 -d.)
 user=$(grep $hostname $passwordfile | awk {'print $4'})
 password=$(grep $hostname $passwordfile | awk {'print $5'})
@@ -24,7 +32,7 @@ SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no"
 
 # jump(thor) system specific specific
 if [ "$hostname" = "jump_host" ]; then
-    # install tmux, sshpass, neovim
+    # install tmux, sshpass
     [ -f yum.install.log ] || sudo yum -y install tmux sshpass 2>&1 > yum.install.log
     passwordfile="passwords"
     grep stapp $passwordfile | while read line; do
