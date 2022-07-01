@@ -39,7 +39,7 @@ if [ "$hostname" = "jump_host" ]; then
         hostname=$(echo $line | awk {'print $1'})
         user=$(echo $line |  awk {'print $4'})
         password=$(echo $line |  awk {'print $5'})
-        apphosst="$apphosts $user@hostname"
+        [ -z $apphosts ] && apphosts=$user@$hostname || apphosts="$apphosts $user@$hostname"
 
         # copy sshkey to stapp0x systems for passwordless login
         sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
