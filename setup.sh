@@ -39,8 +39,16 @@ if [ "$hostname" = "jump_host" ]; then
         hostname=$(echo $line | awk {'print $1'})
         user=$(echo $line |  awk {'print $4'})
         password=$(echo $line |  awk {'print $5'})
+        apphosst="$apphosts $user@hostname"
 
         # copy sshkey to stapp0x systems for passwordless login
         sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
     done
 fi
+# setup  app server for sourcing bashrc.kk and no password sudo
+for h in ${apphosts[@]}; do
+    for f in setup.sh bashrc.kk; do
+        ssh $SSHOPT $h "cat > $f" < $f"
+    done
+    ssh $SSHOPT $h "bash -x setup.sh"
+done
