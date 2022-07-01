@@ -3,14 +3,14 @@
 # File is intended to be sourced from .bashrc
 # Aliases and bash options
 
-# Bash options
+# Bash options/bindings
 shopt -s autocd  # allows changing folder without the cd command, just type folder name.
 set -o vi
 bind '";;":vi-movement-mode'
 bind -m vi-command 'Control-l: clear-screen'
 bind -m vi-insert 'Control-l: clear-screen'
 
-SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no"
+SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no LogLevel=quiet"  # these options prevent prompting
 export EDITOR='[ -f ~/init.vim ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/init.vim && nvim -u ~/init.vim'
 passwordfile="passwords"
 
@@ -23,7 +23,7 @@ function setup_or_ssh() {
 }
 
 # Aliases
-alias ssh="ssh $SHOPT"
+alias ssh="ssh $SSHOPT"
 alias sd='sudo'
 alias s='ls -F'    # short ls
 alias h='cd ~'
