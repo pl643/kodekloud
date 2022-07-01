@@ -48,7 +48,7 @@ fi
 # setup  app server for sourcing bashrc.kk and no password sudo
 for h in ${apphosts[@]}; do
     for f in setup.sh bashrc.kk; do
-        ssh $SSHOPT $h "cat > $f" < $f"
+        ssh $SSHOPT $h "cat > $f" < $f
     done
     ssh $SSHOPT $h "bash -x setup.sh"
 done
