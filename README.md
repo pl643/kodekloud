@@ -1,6 +1,6 @@
 # kodekloud
 
-Scripts, files, related to kodekloud labs.
+## Scripts, files, related to kodekloud labs.
 
 Copy and paste below to autosetup and start in tmux:
 
