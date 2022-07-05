@@ -10,7 +10,7 @@ bind '";;":vi-movement-mode'
 bind -m vi-command 'Control-l: clear-screen'
 bind -m vi-insert 'Control-l: clear-screen'
 
-SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no LogLevel=quiet"  # these options prevent prompting
+SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=quiet"  # these options prevent prompting
 export EDITOR='[ -f ~/init.vim ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/init.vim && nvim -u ~/init.vim'
 passwordfile="passwords"
 
