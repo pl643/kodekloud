@@ -45,7 +45,9 @@ if [ "$hostname" = "jump_host" ]; then
         sshpass -p $password ssh-copy-id $SSHOPT $user@$hostname
     done
 fi
+
 # setup  app server for sourcing bashrc.kk and no password sudo
+apphosts="stapp01 stapp02 stapp03"
 for h in ${apphosts[@]}; do
     for f in setup.sh bashrc.kk; do
         ssh $SSHOPT $h "cat > $f" < $f
