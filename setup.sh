@@ -47,7 +47,10 @@ if [ "$hostname" = "jump_host" ]; then
 fi
 
 # setup  app server for sourcing bashrc.kk and no password sudo
-apphosts="tony@stapp01 steve@stapp02 banner@stapp03"
-for h in ${apphosts[@]}; do
-    ssh $SSHOPT $h "curl -Os $GHURL/setup.sh && bash -x setup.sh"
-done
+
+if [ "$hostname" = "jump_host" ]; then
+        apphosts="tony@stapp01 steve@stapp02 banner@stapp03"
+        for h in ${apphosts[@]}; do
+                ssh $SSHOPT $h "curl -Os $GHURL/setup.sh && bash -x setup.sh"
+        done
+fi
