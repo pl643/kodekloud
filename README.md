@@ -4,7 +4,7 @@ These scripts and config files customizes the KK environment to somewhat my dail
 
 ## The setup.sh script configures the followings:
   - passwordless ssh to stapp01, stapp02, stapp03
-  - passwordless sudo to jump, stapp01, stapp02, stapp03
+  - passwordless sudo on jump, stapp01, stapp02, stapp03
   - installs tmux, neovim, sshpass
   - downloads tmux.conf, init.vim, bashrc.kk
   - adds/sources bashrc.kk to ~/.bashrc
