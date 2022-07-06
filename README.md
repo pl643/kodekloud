@@ -6,7 +6,7 @@ These scripts and config files customizes the KK environment to somewhat like my
   - passwordless ssh to stapp01, stapp02, stapp03
   - passwordless sudo on jump, stapp01, stapp02, stapp03
   - installs tmux, neovim, sshpass
-  - downloads tmux.conf, init.vim, bashrc.kk
+  - downloads tmux.conf, init.vim, bashrc.kk, passwords
   - adds/sources bashrc.kk to ~/.bashrc
 
 ## Copy and paste the below commands on the jump server to download and run the setup.sh script. I do this at the start of each Lab exercise.
