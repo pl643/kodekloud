@@ -1,7 +1,12 @@
-# kodekloud
+# Kodekloud https://www.kodekloud-engineer.com/
 
-## Scripts, files, related to kodekloud labs.
+## setup.sh configures the followings:
+  - passwordless ssh to stapp01, stapp02, stapp03
+  - passwordless sudo to jump, stapp01, stapp02, stapp03
+  - installs tmux, neovim, sshpass
 
-Copy and paste below to autosetup and start in tmux:
+## You should fork this repo change it to your preference.
 
-- curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh && bash -x setup.sh && tmux -f ~/tmux.conf
+## Copy and paste below to command to start setup.sh
+
+  - curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh && bash -x setup.sh && tmux -f ~/tmux.conf
