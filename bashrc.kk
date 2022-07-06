@@ -14,14 +14,6 @@ SSHOPT="-o userknownhostsfile=/dev/null -o StrictHostKeyChecking=no -o LogLevel=
 export EDITOR='[ -f ~/init.vim ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/init.vim && nvim -u ~/init.vim'
 passwordfile="passwords"
 
-function setup_or_ssh() {
-        hostname=stapp0$1
-        user=$(grep $hostname $passwordfile | awk {'print $4'})
-        password=$(grep $hostname $passwordfile | awk {'print $5'})
-        [ -f ~/.$1 ] || ssh $SSHOPT $hostname -l $user "[ -f setup.sh ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh && bash -x setup.sh"; touch .$1
-        ssh $SSHOPT $hostname -l $user
-}
-
 # Aliases
 alias ssh="ssh $SSHOPT"
 alias sd='sudo'
@@ -43,7 +35,4 @@ alias b1='ssh stbkp01 -l clint'
 alias m1='ssh stmail01 -l groot'
 alias ta='tmux -2 -f ~/tmux.conf attach'
 alias tn='tmux -2 -f ~/tmux.conf'
-alias t='[ -f ~/tmux.conf ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/tmux.conf && tmux -2 -f ~/tmux.conf attach || tmux -2 -f ~/tmux.conf' 
-alias 1='setup_or_ssh 1'
-alias 2='setup_or_ssh 2'
-alias 3='setup_or_ssh 3'
+alias t='[ -f ~/tmux.conf ] || curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/tmux.conf && tmux -2 -f ~/tmux.conf attach || tmux -2 -f ~/tmux.conf'
