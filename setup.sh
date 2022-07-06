@@ -1,4 +1,5 @@
-# Setup KodeKloud Lab environment for tmux and ssh keys for passwordless.
+# Setup KodeKloud Lab environment for tmux and ssh keys for passwordless login and passwordless sudo.
+
 # Paste below line without the # to execute:
 #    curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh && bash -x setup.sh && tmux -f ~/tmux.conf
 
