@@ -8,6 +8,6 @@ These scripts customize the KK environment to somewhat of my daily environment s
   - installs tmux, neovim, sshpass
   - downloads tmux.conf, init.vim
 
-## Copy and paste the below command to downloand and run setup.sh
+## Copy and paste the below commands to downloand and run setup.sh
 
   - curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh && bash -x setup.sh && tmux -f ~/tmux.conf
