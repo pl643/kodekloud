@@ -1,4 +1,4 @@
-# Custom Kodekloud Lab
+# Custom Kodekloud Lab Environment
 
 These scripts and config files customizes the KK environment to somewhat my daily environment so I can focus on the Labs instead of always typing the password incorrectly and have tmux running when the lab environment sometimes just resets. You *should* fork this repo and change the configurations to your preference.
 
