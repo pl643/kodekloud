@@ -9,6 +9,6 @@ These scripts and config files customizes the KK environment to somewhat like my
   - downloads tmux.conf, init.vim, bashrc.kk, passwords
   - adds/sources bashrc.kk to ~/.bashrc
 
-## Copy and paste the below commands on the jump server to download and run the setup.sh script. I do this before the start of each exercise.
+## Copy and paste the below commands on the jump_host to download and run the setup.sh script. I do this before the start of each exercise.
 
   - curl -Os https://raw.githubusercontent.com/pl643/kodekloud/main/setup.sh && bash -x setup.sh && tmux -f ~/tmux.conf
