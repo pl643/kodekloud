@@ -16,6 +16,7 @@ passwordfile="passwords"
 
 # Aliases
 alias ssh="ssh $SSHOPT"
+alias scp="scp $SSHOPT"
 alias sd='sudo'
 alias s='ls -F'    # short ls
 alias h='cd ~'
